@@ -22,7 +22,7 @@ export class ProductsEffects {
           queryParams?: { page?: number; size?: number; brandName?: string; productName?: string };
         }) =>
           this.productsService.getAll(queryParams).pipe(
-            map((response: { products: Product[]; total: number; page: number; size: number }) =>
+            map((response: { items: Product[]; total: number; page: number; size: number }) =>
               ProductsActions.loadProductsSuccess({ response })
             ),
             catchError((error: Error) => of(ProductsActions.loadProductsFailure({ error: error.message })))

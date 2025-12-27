@@ -1,1 +1,37 @@
-<p>products works!</p>
+<div class="container py-4">
+  <app-products-header [cartCount]="(cartCount$ | async) ?? 0" (cartClick)="onCartClick()" />
+
+  <app-products-filters (filterApplied)="onFilterApplied($event)" (filterReset)="onFilterReset()" />
+
+  @if (loading$ | async) {
+    <div class="text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  } @else {
+    <div class="text-muted mb-3">Results • Page {{ (page$ | async) ?? 1 }} • Size {{ (size$ | async) ?? 12 }}</div>
+
+    <div class="row row-cols-1 g-4 mb-4">
+      @for (product of products$ | async; track product.id) {
+        <div class="col">
+          <app-products-card [product]="product" (addToCart)="onAddToCart($event)" />
+        </div>
+      } @empty {
+        <div class="col">
+          <div class="alert alert-info">No products found. Try adjusting your filters.</div>
+        </div>
+      }
+    </div>
+
+    @if ((products$ | async)?.length) {
+      <app-pagination
+        [currentPage]="(page$ | async) ?? 1"
+        [pageSize]="(size$ | async) ?? 12"
+        [total]="(total$ | async) ?? 0"
+        (pageChange)="onPageChange($event)"
+        (sizeChange)="onSizeChange($event)"
+      />
+    }
+  }
+</div>

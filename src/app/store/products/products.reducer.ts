@@ -10,7 +10,7 @@ export const initialState: ProductsState = {
   error: null,
   total: 0,
   page: 1,
-  size: 10,
+  size: 3,
 };
 
 export const productsReducer: ActionReducer<ProductsState> = createReducer(
@@ -27,10 +27,10 @@ export const productsReducer: ActionReducer<ProductsState> = createReducer(
     ProductsActions.loadProductsSuccess,
     (
       state: ProductsState,
-      { response }: { response: { products: Product[]; total: number; page: number; size: number } }
+      { response }: { response: { items: Product[]; total: number; page: number; size: number } }
     ): ProductsState => ({
       ...state,
-      products: response.products,
+      products: response.items,
       total: response.total,
       page: response.page,
       size: response.size,

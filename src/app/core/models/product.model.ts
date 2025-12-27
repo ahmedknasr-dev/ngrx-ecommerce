@@ -17,7 +17,7 @@ export interface ProductsQueryParams {
 }
 
 export interface PaginatedProductsResponse {
-  products: Product[];
+  items: Product[];
   total: number;
   page: number;
   size: number;

@@ -27,6 +27,11 @@ export class AuthService {
 
   logout(): void {
     this.localStorageService.removeItem(this.TOKEN_KEY);
+    this.isAuthenticated.set(false);
+  }
+
+  getToken(): string | null {
+    return this.localStorageService.getItem(this.TOKEN_KEY);
   }
 
   private hasToken(): boolean {
