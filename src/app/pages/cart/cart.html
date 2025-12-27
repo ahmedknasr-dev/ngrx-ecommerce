@@ -2,8 +2,8 @@
   <app-cart-header (continueShoppingClick)="onContinueShopping()" />
 
   @if ((cartItems$ | async)?.length) {
-    <!-- Cart Table Header -->
-    <div class="row bg-light py-3 mb-3">
+    <!-- Cart Table Header - Hidden on mobile -->
+    <div class="row bg-light py-3 mb-3 d-none d-md-flex">
       <div class="col-md-4">
         <strong>Product</strong>
       </div>
