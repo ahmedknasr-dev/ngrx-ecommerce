@@ -1,0 +1,23 @@
+.card {
+  border: none;
+  border-radius: var(--bs-border-radius-lg);
+}
+
+.btn-primary {
+  padding: 0.75rem;
+  font-weight: var(--bs-font-weight-medium, 500);
+  letter-spacing: 0.5px;
+}
+
+.form-control:focus {
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+.input-group .btn {
+  border-color: var(--bs-border-color);
+}
+
+.input-group .form-control:focus ~ .btn {
+  border-color: var(--bs-primary);
+}
