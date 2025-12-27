@@ -1,0 +1,47 @@
+<div class="row align-items-center py-3 border-bottom">
+  <!-- Product Column -->
+  <div class="col-md-4">
+    <div class="d-flex align-items-center gap-3">
+      <img [ngSrc]="item().imageUrl" [alt]="item().productName" width="80" height="80" class="rounded" />
+      <div>
+        <h6 class="mb-1">{{ item().productName }}</h6>
+        @if (item().brandName) {
+          <small class="text-muted">{{ item().brandName }}</small>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Price Column -->
+  <div class="col-md-2 text-center">
+    <span>{{ item().price | currency }}</span>
+  </div>
+
+  <!-- Quantity Column -->
+  <div class="col-md-2">
+    <div class="d-flex align-items-center justify-content-center gap-2">
+      <button
+        class="btn btn-sm btn-outline-secondary"
+        type="button"
+        (click)="onDecreaseQuantity()"
+        [disabled]="item().quantity <= 1"
+      >
+        <i class="bi bi-dash"></i>
+      </button>
+      <span class="px-2">{{ item().quantity }}</span>
+      <button class="btn btn-sm btn-outline-secondary" type="button" (click)="onIncreaseQuantity()">
+        <i class="bi bi-plus"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Line Total Column -->
+  <div class="col-md-2 text-center">
+    <strong>{{ lineTotal() | currency }}</strong>
+  </div>
+
+  <!-- Actions Column -->
+  <div class="col-md-2 text-center">
+    <button class="btn btn-outline-danger btn-sm" type="button" (click)="onRemove()">Remove</button>
+  </div>
+</div>

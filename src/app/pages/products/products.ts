@@ -66,6 +66,7 @@ export class Products implements OnInit {
       price: product.price,
       quantity: 1,
       imageUrl: product.imageUrl,
+      brandName: product.brandName,
     };
     this.cartFacade.addToCart(cartItem);
   }

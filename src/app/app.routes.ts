@@ -29,6 +29,12 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'cart',
+    title: 'Shopping Cart',
+    loadComponent: () => import('./pages/cart/cart').then((m: { Cart: Type<unknown> }) => m.Cart),
+    canActivate: [authGuard],
+  },
+  {
     path: '**',
     redirectTo: 'products',
   },

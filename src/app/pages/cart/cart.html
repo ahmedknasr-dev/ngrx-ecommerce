@@ -1,0 +1,46 @@
+<div class="container py-4">
+  <app-cart-header (continueShoppingClick)="onContinueShopping()" />
+
+  @if ((cartItems$ | async)?.length) {
+    <!-- Cart Table Header -->
+    <div class="row bg-light py-3 mb-3">
+      <div class="col-md-4">
+        <strong>Product</strong>
+      </div>
+      <div class="col-md-2 text-center">
+        <strong>Price</strong>
+      </div>
+      <div class="col-md-2 text-center">
+        <strong>Qty</strong>
+      </div>
+      <div class="col-md-2 text-center">
+        <strong>Line Total</strong>
+      </div>
+      <div class="col-md-2 text-center">
+        <strong>Actions</strong>
+      </div>
+    </div>
+
+    <!-- Cart Items -->
+    <div class="mb-4">
+      @for (item of cartItems$ | async; track item.productId) {
+        <app-cart-item [item]="item" (quantityChange)="onQuantityChange($event)" (removeClick)="onRemoveItem($event)" />
+      }
+    </div>
+
+    <!-- Cart Summary -->
+    <app-cart-summary
+      [totalItems]="(totalItems$ | async) ?? 0"
+      [subtotal]="(totalPrice$ | async) ?? 0"
+      (clearCartClick)="onClearCart()"
+      (proceedClick)="onProceed()"
+    />
+  } @else {
+    <div class="alert alert-info text-center py-5">
+      <i class="bi bi-cart-x display-1 d-block mb-3"></i>
+      <h4>Your cart is empty</h4>
+      <p class="mb-3">Add some products to get started!</p>
+      <button class="btn btn-primary" type="button" (click)="onContinueShopping()">Start Shopping</button>
+    </div>
+  }
+</div>
