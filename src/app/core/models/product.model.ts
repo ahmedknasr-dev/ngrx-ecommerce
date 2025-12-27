@@ -6,7 +6,7 @@ export interface Product {
   imageUrl: string;
   price: number;
   brandName: string;
-  recommendedIds: string[];
+  recommendedProducts: Product[];
 }
 
 export interface ProductsQueryParams {

@@ -12,8 +12,13 @@ import { Product } from '../../../../core/models/product.model';
 export class ProductsCard {
   product: InputSignal<Product> = input.required<Product>();
   addToCart: OutputEmitterRef<Product> = output<Product>();
+  viewDetails: OutputEmitterRef<string> = output<string>();
 
   onAddToCart(): void {
     this.addToCart.emit(this.product());
+  }
+
+  onViewDetails(): void {
+    this.viewDetails.emit(this.product().id);
   }
 }

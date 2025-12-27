@@ -15,7 +15,11 @@
     <div class="row row-cols-1 g-4 mb-4">
       @for (product of products$ | async; track product.id) {
         <div class="col">
-          <app-products-card [product]="product" (addToCart)="onAddToCart($event)" />
+          <app-products-card
+            [product]="product"
+            (addToCart)="onAddToCart($event)"
+            (viewDetails)="onViewDetails($event)"
+          />
         </div>
       } @empty {
         <div class="col">

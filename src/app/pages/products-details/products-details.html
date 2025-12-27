@@ -1,1 +1,35 @@
-<p>products-details works!</p>
+<div class="container py-4">
+  <app-product-details-header [cartCount]="(cartCount$ | async) ?? 0" (cartClick)="onCartClick()" />
+
+  @if (loading$ | async) {
+    <div class="text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  } @else if (product$ | async; as product) {
+    <!-- Product Info Section -->
+    <app-product-info [product]="product" (addToCart)="onAddToCart($event)" />
+
+    <!-- Recommended Products Section -->
+    @if ((recommendedProducts$ | async)?.length) {
+      <div class="mt-5">
+        <h4 class="mb-4">Recommended Products</h4>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+          @for (recommendedProduct of recommendedProducts$ | async; track recommendedProduct.id) {
+            <div class="col">
+              <app-recommended-card [product]="recommendedProduct" (viewDetails)="onViewDetails($event)" />
+            </div>
+          }
+        </div>
+      </div>
+    }
+  } @else {
+    <div class="alert alert-warning text-center py-5">
+      <i class="bi bi-exclamation-triangle display-1 d-block mb-3"></i>
+      <h4>Product not found</h4>
+      <p class="mb-3">The product you're looking for doesn't exist.</p>
+      <button class="btn btn-primary" type="button" (click)="onBackToProducts()">Back to Products</button>
+    </div>
+  }
+</div>

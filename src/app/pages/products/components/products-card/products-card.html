@@ -1,4 +1,4 @@
-<div class="card h-100">
+<div class="card h-100" style="cursor: pointer" (click)="onViewDetails()">
   <div class="card-body">
     <div class="row align-items-center">
       <div class="col-3">
@@ -17,7 +17,7 @@
         <p class="fw-bold text-primary mb-0">{{ product().price | currency }}</p>
       </div>
       <div class="col-3 d-flex align-items-center justify-content-end">
-        <button type="button" class="btn btn-primary" (click)="onAddToCart()">
+        <button type="button" class="btn btn-primary" (click)="onAddToCart(); $event.stopPropagation()">
           <i class="bi bi-cart-plus"></i>
           <span class="d-none d-lg-inline ms-2">Add to Cart</span>
         </button>

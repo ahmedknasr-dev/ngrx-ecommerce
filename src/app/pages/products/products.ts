@@ -74,4 +74,8 @@ export class Products implements OnInit {
   onCartClick(): void {
     this.router.navigate(['/cart']);
   }
+
+  onViewDetails(productId: string): void {
+    this.router.navigate(['/products', productId]);
+  }
 }
